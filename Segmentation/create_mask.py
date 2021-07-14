@@ -27,7 +27,10 @@ file_list = scan_files(path)
 # 其他视为前进，赋值1，遍历完成后覆盖保存在Mask文件夹下
 # @author 戴柯
 # @version 1.1
+num = 0
 for file in file_list:
+    num = num + 1
+    print(num)
     img = cv2.imread(file, 0)
     for x in range(img.shape[0]):
         for y in range(img.shape[1]):
@@ -38,8 +41,8 @@ for file in file_list:
             # else:
             #     img[x, y] = 1
             if 0 < img[x, y] < 200:
-                img[x, y] = 1
+                img[x, y] = 2
             else:
-                img[x, y] = 0
+                img[x, y] = 1
     _, name = os.path.split(file)
     cv2.imwrite(path+'\\'+name, img)

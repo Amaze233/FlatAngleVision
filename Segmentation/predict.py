@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import pathlib
 import cv2
 from Segmentation.info import *
+import numpy as np
 
 model = tf.keras.models.load_model(MODEL_PATH)
 
@@ -44,7 +45,7 @@ def create_mask(pred_mask):
 # @author 戴柯
 # @version 1.0
 def process(file):
-    img = tf.image.resize(file, (MODULE_SIZE, MODULE_SIZE))
+    img = tf.image.resize(file, (MODEL_SIZE, MODEL_SIZE))
     img = tf.cast(img, tf.float32) / 255.0
     mask = create_mask(model.predict(img))
     mask = tf.image.resize(mask, (file.shape[1], file.shape[2]))
@@ -56,9 +57,8 @@ def process(file):
 
 
 mask_list = [process(file) for file in file_ds]
-
 img_list = [cv2.imread(file) for file in file_paths]
-mk_list = [cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) for img in img_list]
+# mk_list = [cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) for img in img_list]
 
 # 根据掩码图对原图进行处理，并将结果保存在after文件夹下
 # @author 戴柯
@@ -68,8 +68,8 @@ for i in range(len(mask_list)):
     for y in range(mask_list[i].shape[0]):
         print("{0}: {1} %".format(i + 1, int(100 * y / mask_list[i].shape[0])))
         for x in range(mask_list[i].shape[1]):
-            mk_list[i][y, x] = mask_list[i][y, x]
+            # mk_list[i][y, x] = mask_list[i][y, x]
             if mask_list[i][y, x] != 0:
                 img_list[i][y, x] = (0, 0, 0, 0)
     cv2.imwrite(r'{0}\{1}.png'.format(save_root, pathlib.Path(file_paths[i]).stem), img_list[i])
-    cv2.imwrite(r'{0}\{1}.mk'.format(save_root, pathlib.Path(file_paths[i]).stem), mk_list[i])
+    # cv2.imwrite(r'{0}\{1}.mk'.format(save_root, pathlib.Path(file_paths[i]).stem), mk_list[i])
