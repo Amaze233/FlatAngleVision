@@ -83,13 +83,12 @@ model = tf.keras.models.load_model(MODEL_PATH)
 
 EPOCHS = EPOCHS_NUM
 VAL_SUBSPLITS = 5
-VALIDATION_STEPS = info.splits['test'].num_examples//BATCH_SIZE//VAL_SUBSPLITS
+VALIDATION_STEPS = info.splits['test'].num_examples // BATCH_SIZE // VAL_SUBSPLITS
 
 model_history = model.fit(train_dataset, epochs=EPOCHS,
                           steps_per_epoch=STEPS_PER_EPOCH,
                           validation_steps=VALIDATION_STEPS,
-                          validation_data=test_dataset,
-                          callbacks=[])
+                          validation_data=test_dataset, callsback=[])
 
 # 周期与精确度折线图
 loss = model_history.history['loss']

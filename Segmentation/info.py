@@ -1,10 +1,10 @@
 MODULE_SIZE = 128
 OUTPUT_CHANNELS = 3
-SRC_PATH = 'src'
+SRC_PATH = r'..\..\..\shixun\src'
 IMG_PATH = SRC_PATH + r'\img'
 MASK_PATH = SRC_PATH + r'\mask'
 DATASET_ROOT = SRC_PATH + r'\dataset'
 MODEL_PATH = SRC_PATH + r'\model'
-UN_PRODUCED_FILE_PTAH = 'bef'
-PRODUCED_FILE_PATH = 'aft'
+UN_PRODUCED_FILE_PTAH = SRC_PATH + r'\bef'
+PRODUCED_FILE_PATH = SRC_PATH + r'\aft'
 EPOCHS_NUM = 10
