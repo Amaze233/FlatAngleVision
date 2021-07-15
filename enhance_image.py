@@ -59,9 +59,8 @@ def image_rotate(image1, mask_image):
     rotate_core = (cols / 2, rows / 2)  # 旋转中心
     rotate_angle = [60, -60, 45, -45, 90, -90, 210, 240, -210, -240]
     paras = cv2.getRotationMatrix2D(rotate_core, choice(rotate_angle), 1)
-    border_value = tuple(int(x) for x in choice(choice(image2rotate)))
-    image_new = cv2.warpAffine(image2rotate, paras, (cols, rows), borderValue=border_value)
-    mask_new = cv2.warpAffine(mask_image, paras, (cols, rows), borderValue=border_value)
+    image_new = cv2.warpAffine(image2rotate, paras, (cols, rows), borderValue=0)
+    mask_new = cv2.warpAffine(mask_image, paras, (cols, rows), borderValue=0)
     return image_new, mask_new
     # cv2.imwrite(target_path2, img_new)
 
@@ -73,9 +72,8 @@ def image_translation(image1, mask_image):
     paras_height = [[0, 1, 100], [0, 1, -100]]
     rows, cols = image2translation.shape[:2]
     img_shift = np.float32([choice(paras_wide), choice(paras_height)])
-    border_value = tuple(int(x) for x in choice(choice(image2translation)))
-    image_new = cv2.warpAffine(image2translation, img_shift, (cols, rows), borderValue=border_value)
-    mask_new = cv2.warpAffine(mask_image, img_shift, (cols, rows), borderValue=border_value)
+    image_new = cv2.warpAffine(image2translation, img_shift, (cols, rows), borderValue=0)
+    mask_new = cv2.warpAffine(mask_image, img_shift, (cols, rows), borderValue=0)
     return image_new, mask_new
     # cv2.imwrite(target_path3, img_new)
 
