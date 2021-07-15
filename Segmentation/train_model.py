@@ -43,8 +43,8 @@ dataset, info = tfds.load('oxford_iiit_pet:3.*.*', with_info=True)
 # @author 戴柯
 # @version 1.0
 def load_image_test(datapoint):
-    input_image = tf.image.resize(datapoint['image'], (MODULE_SIZE, MODULE_SIZE))
-    input_mask = tf.image.resize(datapoint['segmentation_mask'], (MODULE_SIZE, MODULE_SIZE))
+    input_image = tf.image.resize(datapoint['image'], (MODEL_SIZE, MODEL_SIZE))
+    input_mask = tf.image.resize(datapoint['segmentation_mask'], (MODEL_SIZE, MODEL_SIZE))
     input_image = tf.cast(input_image, tf.float32) / 255.0
     input_mask = tf.cast(input_mask, tf.uint8) - 1
     return input_image, input_mask
@@ -62,8 +62,8 @@ AUTOTUNE = tf.data.experimental.AUTOTUNE
 # @author 戴柯
 # @version 1.0
 def reprocess(dp1, dp2):
-    dp1.set_shape((MODULE_SIZE, MODULE_SIZE, 3))
-    dp2.set_shape((MODULE_SIZE, MODULE_SIZE, 1))
+    dp1.set_shape((MODEL_SIZE, MODEL_SIZE, 3))
+    dp2.set_shape((MODEL_SIZE, MODEL_SIZE, 1))
     # dp1 = tf.cast(dp1, tf.float32)
     # dp2 = tf.cast(dp1, tf.uint8)
     return dp1, dp2
@@ -83,12 +83,13 @@ model = tf.keras.models.load_model(MODEL_PATH)
 
 EPOCHS = EPOCHS_NUM
 VAL_SUBSPLITS = 5
-VALIDATION_STEPS = info.splits['test'].num_examples // BATCH_SIZE // VAL_SUBSPLITS
+VALIDATION_STEPS = info.splits['test'].num_examples//BATCH_SIZE//VAL_SUBSPLITS
 
 model_history = model.fit(train_dataset, epochs=EPOCHS,
                           steps_per_epoch=STEPS_PER_EPOCH,
                           validation_steps=VALIDATION_STEPS,
-                          validation_data=test_dataset, callsback=[])
+                          validation_data=test_dataset,
+                          callbacks=[])
 
 # 周期与精确度折线图
 loss = model_history.history['loss']

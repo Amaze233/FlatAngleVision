@@ -13,7 +13,7 @@ def load_img(img_path):
 # 从winpath路径读取原图文件，并将其大小设为模型所需大小，之后通过转为tf.float32再除以255.0进行标准化
 # @author 戴柯
 # @version 1.0
-def load_and_preprocess_jpg(img_path, size=MODULE_SIZE):
+def load_and_preprocess_jpg(img_path, size=MODEL_SIZE):
     img = load_img(img_path)
     img = tf.image.decode_jpeg(img, channels=3)
     img = tf.image.resize(img, (size, size))
@@ -24,7 +24,7 @@ def load_and_preprocess_jpg(img_path, size=MODULE_SIZE):
 # 从路径读取掩码图文件，并将其设为模型所需大小，-1将123转为012进行标准化，再转为tf.uint8缩减大小以便保存
 # @author 戴柯
 # @version 1.0
-def load_and_preprocess_mask(mask_path, size=MODULE_SIZE):
+def load_and_preprocess_mask(mask_path, size=MODEL_SIZE):
     mask = load_img(mask_path)
     mask = tf.image.decode_png(mask, channels=1)
     mask = tf.image.resize(mask, (size, size))
