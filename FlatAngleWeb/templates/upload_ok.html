@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask上传图片演示</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+	<link rel="stylesheet" href="../static/css/upload_ok.css" type="text/css" />
+</head>
+<body>
+<!-- <h1 align="center">使用Flask上传本地图片并显示示例一</h1> -->
+
+<div class="mainBlock">
+	<div class="imageBlock">
+        <form action="" enctype='multipart/form-data' method='POST'>
+            <div class="previewImage">
+                <img src="{{url}}"  alt="你的图片被外星人劫持了～～"/>
+            </div>
+            <div class="urlBlock">
+                <input type="text" name="online_img_url" class="urlInput"/>
+            </div>
+            <input type="file" name="image_file" id="input" hidden/>
+            <br>
+            <input type="submit" class="upload_button" id="upload" hidden/>
+        </form>
+
+		<div class="iconBlock">
+			<div class="arrowLogo">
+				<i class="fa fa-arrow-right" style="font-size:48px;color:white"></i>
+			</div>
+		</div>
+		<div class="completeImage">
+			<img src="{{ 'http://121.199.2.56:5000'+ path }}"  alt="你的图片被外星人劫持了～～"/>
+		</div>
+	</div>
+	<div class="buttonBlock">
+		<div class="previewButton">
+			<button type="button" class="preview_button">
+			    Browse File
+			</button>
+		</div>
+		<div class="uploadButton">
+			<button type="button" onclick="inputFile()" class="upload_button">
+			    Upload File
+			</button>
+		</div>
+	</div>
+</div>
+<script src="../static/js/upload_ok.js"></script>
+
+
+</body>
+</html>

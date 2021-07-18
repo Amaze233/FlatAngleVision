@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../static/css/upload.css" />
+    <title>FlatAngle</title>
+</head>
+<body>
+<div class="body">
+    <form method="POST" action="" enctype="multipart/form-data" class="form">
+        <div class="drag_area">
+            <div class="icon">
+                <i class="fa fa-clipboard" style="font-size:100px; color: #FFFFFF;" ></i>
+            </div>
+            <header>
+                Drag & Drop To Upload File
+            </header>
+            <span>OR</span>
+            <button type="button" >
+                Browse File
+            </button>
+        </div>
+
+        <input type="file" id="inputfile" name="file" hidden/>
+        <input type="submit" id="uploadfile" hidden />
+    </form>
+    <div class="button_area" style="display: none;">
+        <button type=button" onclick="UploadFile()" style="display: block;">Upload File</button>
+    </div>
+</div>
+
+</body>
+<script src="../static/js/upload.js"></script>
+</html>
+
+

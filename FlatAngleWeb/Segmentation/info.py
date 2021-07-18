@@ -1,0 +1,10 @@
+MODULE_SIZE = 128
+OUTPUT_CHANNELS = 3
+SRC_PATH = r'E:\Python\FlatAngleVision-master\FlatAngleAPI\Segmentation\src'
+IMG_PATH = SRC_PATH + r'\img'
+MASK_PATH = SRC_PATH + r'\mask'
+DATASET_PATH = SRC_PATH + r'\dataset'
+MODULE_PATH = SRC_PATH + r'\model'
+UN_PRODUCED_FILE_PTAH = SRC_PATH + '/../bef'
+PRODUCED_FILE_PATH = SRC_PATH + '/../aft'
+EPOCHS_NUM = 10
